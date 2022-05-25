@@ -1,8 +1,12 @@
 <script setup lang="ts">
+import TheIconsSet from "@/components/TheIconsSet.vue"
+import WelcomeItem from '@/components/atoms/AtomInput.vue'
 </script>
 
 <template>
-  <h1>Hello</h1>
+  <TheIconsSet/>
+  <h1>Spli<br>tter</h1>
+  <WelcomeItem label="Bill" type="text" placeholder="0" icon="dollar"/>
 </template>
 
 <style>
