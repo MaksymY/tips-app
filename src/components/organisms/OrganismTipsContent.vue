@@ -7,7 +7,7 @@ import AtomIcon from '@/components/atoms/AtomIcon.vue';
 
 <template>
     <section class="tipsContent">
-        <AtomIcon href="logo" />
+        <AtomIcon class="tipsContent__logo" href="logo" />
         <div class="tipsContent__main">
             <AtomInput label="Bill" type="text" placeholder="0" icon="dollar"/>
             <MoleculeTipsPercentage />
@@ -23,7 +23,11 @@ import AtomIcon from '@/components/atoms/AtomIcon.vue';
     flex-direction: column;
     justify-content: space-evenly;
     background-color: $Light_grayish;
-    height: 100vh;
+    align-items: center;
+
+    &__logo {
+        width: 100px;
+    }
 
     &__main {
         display: grid;

@@ -11,7 +11,7 @@ import AtomInput from "@/components/atoms/AtomInput.vue";
         <AtomButton value="15%"/>
         <AtomButton value="25%"/>
         <AtomButton value="50%"/>
-        <AtomInput class="tips__input" type="text" placeholder="Custom"/>
+        <AtomInput :childClass="'tips__input'" type="text" placeholder="Custom"/>
     </div>
 </template>
 
@@ -27,8 +27,9 @@ import AtomInput from "@/components/atoms/AtomInput.vue";
         font-weight: bold;
     }
     &__input {
+        width: 100%;
         &::placeholder {
-            color: red !important;
+            color:  $Dark_grayish;
         }
     }
 }

@@ -5,7 +5,7 @@ const props = defineProps<{
     label?: string,
     placeholder: string,
     icon?: string,
-    style?: string,
+    childClass?: string,
 }>();
 const path = computed<string>(() => `src/assets/images/icon-${props.icon}.svg`)
 
@@ -17,7 +17,7 @@ const path = computed<string>(() => `src/assets/images/icon-${props.icon}.svg`)
         <input
             :style="{'background-image': `url(${path})`}"
             class="atomInput__input"
-            :class="style"
+            :class="childClass"
             :type="props.type" 
             :placeholder="props.placeholder"
         />
@@ -31,6 +31,7 @@ const path = computed<string>(() => `src/assets/images/icon-${props.icon}.svg`)
     &__label {
         color: $Dark_grayish;
         font-weight: bold;
+        margin-bottom: 10px;
     }
     &__input {
         text-align: right; 
@@ -42,6 +43,7 @@ const path = computed<string>(() => `src/assets/images/icon-${props.icon}.svg`)
         font-weight: bold;
         background: no-repeat center left 15px ,$Very_light_grayish;
         height: -webkit-fill-available;
+        box-sizing: border-box;
         &::placeholder {
             color: $Light_grayish;
         }
