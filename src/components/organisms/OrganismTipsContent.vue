@@ -1,25 +1,43 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive, computed } from 'vue'
 import MoleculeTipsPercentage from "@/components/molecules/MoleculeTipsPercentage.vue";
 import MoleculeCalculTips from "@/components/molecules/MoleculeCalculeTips.vue";
 import AtomInput from "@/components/atoms/AtomInput.vue";
 import AtomIcon from '@/components/atoms/AtomIcon.vue';
 
 interface TipsInfoTypes {
-    bill: string
-    choicePercentage: string | null
-    numberPeople: string
+    bill: number
+    choicePercentage: number
+    numberPeople: number
 }
 
 const tipsInfo: TipsInfoTypes = reactive({
-    bill: "",
-    choicePercentage: "",
-    numberPeople: "",
+    bill: 0,
+    choicePercentage: 0,
+    numberPeople: 0,
 })
 
-function choicePercentage(str: string  |null ) {
-    tipsInfo.choicePercentage = str;
+function choicePercentage(num: number ) {
+    tipsInfo.choicePercentage = num;
 }
+
+function reset() {
+    tipsInfo.bill = 0;
+    tipsInfo.choicePercentage = 0;
+    tipsInfo.numberPeople = 0;
+}
+
+const calculationTipsPerson = computed<number>(() => {
+    const { bill, choicePercentage, numberPeople} = tipsInfo;
+    const result = (bill / 100 * choicePercentage) / numberPeople;
+    return isNaN(result) ? 0 : +result.toFixed(2);
+});
+
+const calculationTotalPerson = computed<number>(() => {
+    const { bill, numberPeople} = tipsInfo;
+    const result = bill /  numberPeople + calculationTipsPerson.value;
+    return isNaN(result) ? 0 : +result.toFixed(2);
+})
 
 </script>
 
@@ -27,10 +45,16 @@ function choicePercentage(str: string  |null ) {
     <section class="tipsContent">
         <AtomIcon class="tipsContent__logo" href="logo" />
         <div class="tipsContent__main">
-            <AtomInput v-model="tipsInfo.bill" label="Bill" type="text" placeholder="0" icon="dollar"/>
-            <MoleculeTipsPercentage @choice-percentage="choicePercentage" />
-            <AtomInput v-model="tipsInfo.numberPeople" label="Number of people" type="text" placeholder="0" icon="person"/>
-            <MoleculeCalculTips />
+            <section class="tipsContent__main-left">
+                <AtomInput v-model.number="tipsInfo.bill" label="Bill" type="text" placeholder="0" icon="dollar"/>
+                <MoleculeTipsPercentage @choice-percentage="choicePercentage" />
+                <AtomInput v-model.number="tipsInfo.numberPeople" label="Number of people" type="text" placeholder="0" icon="person"/>
+            </section>
+            <MoleculeCalculTips
+                @reset-tips="reset"
+                :tipsPerson="calculationTipsPerson"
+                :totalPerson="calculationTotalPerson"
+            />
         </div>
     </section>
 </template>
@@ -42,6 +66,10 @@ function choicePercentage(str: string  |null ) {
     justify-content: space-evenly;
     background-color: $Light_grayish;
     align-items: center;
+    @media (min-width:900px) {
+        height: 100vh;
+        justify-content: center;
+    }
 
     &__logo {
         width: 100px;
@@ -53,6 +81,17 @@ function choicePercentage(str: string  |null ) {
         background-color: $White;
         border-radius: 10px;
         padding: 30px;
+        max-width: 1000px;
+
+        @media (min-width:900px) {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    &__main-left {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
     }
 }
 </style>

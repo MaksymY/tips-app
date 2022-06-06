@@ -1,22 +1,34 @@
 <script setup lang="ts">
 import AtomButton from "@/components/atoms/AtomButton.vue";
+
+const emit = defineEmits<{
+    (event: 'reset-tips') : void
+}>();
+
+const props = defineProps<{
+    tipsPerson: number,
+    totalPerson: number,
+}>();
+
 </script>
 
 <template>
     <div class="tipsCalcul">
-        <div class="tipsCalcul__section">
-            <p class="tipsCalcul__section-description">
-                Tips Amount<br><span class="tipsCalcul__section-span">/ persone</span>
-            </p>
-            <p class="tipsCalcul__section-result">$3.50</p>
-        </div>
-        <div class="tipsCalcul__section">
-            <p class="tipsCalcul__section-description">
-                Total<br><span class="tipsCalcul__section-span">/ persone</span>
-            </p>
-            <p class="tipsCalcul__section-result">$32.79</p>
-        </div>
-        <AtomButton class="tipsCalcul__button" value="Reset"/>
+        <section>
+            <div class="tipsCalcul__section">
+                <p class="tipsCalcul__section-description">
+                    Tips Amount<br><span class="tipsCalcul__section-span">/ persone</span>
+                </p>
+                <p class="tipsCalcul__section-result">${{ props.tipsPerson }}</p>
+            </div>
+            <div class="tipsCalcul__section">
+                <p class="tipsCalcul__section-description">
+                    Total<br><span class="tipsCalcul__section-span">/ persone</span>
+                </p>
+                <p class="tipsCalcul__section-result">${{ props.totalPerson }}</p>
+            </div>
+        </section>
+        <AtomButton @click="emit('reset-tips')" class="tipsCalcul__button" value="Reset"/>
     </div>
 </template>
 
@@ -25,6 +37,7 @@ import AtomButton from "@/components/atoms/AtomButton.vue";
     background-color: $Very_dark;
     border-radius: 10px;
     display: flex;
+    justify-content: space-between;
     flex-direction: column;
     padding: 25px;
     font-weight: bold;

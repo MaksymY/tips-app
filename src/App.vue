@@ -3,7 +3,7 @@ import TheIconsSet from "@/components/TheIconsSet.vue"
 import OrganismTipsContent from '@/components/organisms/OrganismTipsContent.vue';
 </script>
 
-<template>
+<template id="app">
   <TheIconsSet/>
   <OrganismTipsContent/>
 </template>
@@ -15,5 +15,6 @@ import OrganismTipsContent from '@/components/organisms/OrganismTipsContent.vue'
   font-family: 'Space Mono', sans-serif;
   margin: 0 auto;
   padding: 0;
+  height: 100%;
 }
 </style>
