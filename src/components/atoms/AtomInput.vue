@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+
 const props = defineProps<{
     type: string,
     label?: string,
@@ -7,7 +8,8 @@ const props = defineProps<{
     icon?: string,
     childClass?: string,
 }>();
-const path = computed<string>(() => `src/assets/images/icon-${props.icon}.svg`)
+
+const path = computed<string>(() => `src/assets/images/icon-${props.icon}.svg`);
 
 </script>
 
@@ -15,6 +17,7 @@ const path = computed<string>(() => `src/assets/images/icon-${props.icon}.svg`)
     <div class="atomInput">
         <label v-if="props.label" class="atomInput__label">{{ props.label }}</label>
         <input
+            @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
             :style="{'background-image': `url(${path})`}"
             class="atomInput__input"
             :class="childClass"
