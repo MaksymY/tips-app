@@ -45,7 +45,7 @@ const path = computed<string>(() => `src/assets/images/icon-${props.icon}.svg`);
         font-size: 24px;
         font-weight: bold;
         background: no-repeat center left 15px ,$Very_light_grayish;
-        height: -webkit-fill-available;
+        height: 100%;
         box-sizing: border-box;
         &::placeholder {
             color: $Light_grayish;
