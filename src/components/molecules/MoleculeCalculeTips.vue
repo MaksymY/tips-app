@@ -64,6 +64,12 @@ const props = defineProps<{
         background-color: $Primary_cyan;
         color: $Very_dark;
         font-weight: bold;
+        transition: .5s;
+
+        &:hover {
+            background-color: $Light_grayish;
+            color: $Primary_cyan;
+        }
     }
 }
 </style>

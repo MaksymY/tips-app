@@ -7,6 +7,7 @@ const props = defineProps<{
     placeholder: string,
     icon?: string,
     childClass?: string,
+    modelValue?: number
 }>();
 
 const path = computed<string>(() => `src/assets/images/icon-${props.icon}.svg`);
@@ -18,6 +19,7 @@ const path = computed<string>(() => `src/assets/images/icon-${props.icon}.svg`);
         <label v-if="props.label" class="atomInput__label">{{ props.label }}</label>
         <input
             @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+            :value="props.modelValue === 0 ? null : props.modelValue"
             :style="{'background-image': `url(${path})`}"
             class="atomInput__input"
             :class="childClass"

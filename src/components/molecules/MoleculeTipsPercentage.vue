@@ -9,7 +9,7 @@ const emit = defineEmits<{
 }>()
 
 watch(percentage, (newVal) => {
-    emit("choice-percentage", newVal) 
+    emit("choice-percentage", newVal); 
 })
 
 </script>

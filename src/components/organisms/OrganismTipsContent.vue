@@ -46,9 +46,9 @@ const calculationTotalPerson = computed<number>(() => {
         <AtomIcon class="tipsContent__logo" href="logo" />
         <div class="tipsContent__main">
             <section class="tipsContent__main-left">
-                <AtomInput v-model.number="tipsInfo.bill" label="Bill" type="text" placeholder="0" icon="dollar"/>
-                <MoleculeTipsPercentage @choice-percentage="choicePercentage" />
-                <AtomInput v-model.number="tipsInfo.numberPeople" label="Number of people" type="text" placeholder="0" icon="person"/>
+                <AtomInput :modelValue="tipsInfo.bill" v-model.number="tipsInfo.bill" label="Bill" type="text" placeholder="0" icon="dollar"/>
+                <MoleculeTipsPercentage  @choice-percentage="choicePercentage" />
+                <AtomInput :modelValue="tipsInfo.numberPeople" v-model.number="tipsInfo.numberPeople" label="Number of people" type="text" placeholder="0" icon="person"/>
             </section>
             <MoleculeCalculTips
                 @reset-tips="reset"
